@@ -17,7 +17,7 @@ export default function CreateForage() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const socket = io('http://localhost:3001');
+        const socket = io('http://localhost:3000');
 
         return () => {
             socket.disconnect();
@@ -80,8 +80,8 @@ export default function CreateForage() {
 
 
                             <div className='row justify-content-center'>
-                                {showSuccess && <Success success="Fourrage créé avec succès" />}
-                                {error && <Error error="Quelque chose s'est mal passé" />}
+                            {success && showSuccess &&  <Success success="Fourrage créé avec succès" />}
+                            {!success && error && <Error error={error} />}
 
                                 <div className="col-md-4 mb-3">
                                     <button type="submit" className="btn ">Créer</button>

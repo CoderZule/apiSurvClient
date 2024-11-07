@@ -1,24 +1,17 @@
 
 export const createForageReducer = (state = {}, action) => {
-
-
     switch (action.type) {
-        case 'FORAGE_CREATE_REQUEST': return {
-            loading: true,
-            ...state
-        }
-        case 'FORAGE_CREATE_SUCCESS': return {
-            loading: false,
-            success: true,
-        }
-        case 'FORAGE_CREATE_FAILED': return {
-            error: action.payload,
-            loading: false
-        }
-        default: return state
+      case 'FORAGE_CREATE_REQUEST':
+        return { loading: true, ...state };
+      case 'FORAGE_CREATE_SUCCESS':
+        return { loading: false, success: true };
+      case 'FORAGE_CREATE_FAILED':
+        return { loading: false, error: action.payload };
+      default:
+        return state;
     }
-
-}
+  };
+  
 
 export const getAllForagesReducer = (state = { forages: [] }, action) => {
     switch (action.type) {
@@ -63,19 +56,22 @@ export const getForageByIdReducer = (state = {}, action) => {
 
 export const editForageReducer = (state = {}, action) => {
     switch (action.type) {
-        case 'EDIT_FORAGE_REQUEST': return {
-            editloading: true,
-            ...state
-        }
-        case 'EDIT_FORAGE_SUCCESS': return {
-            editloading: false,
-            editsuccess: true,
-        }
-        case 'EDIT_FORAGES_FAILED': return {
-            editerror: action.payload,
-            editloading: false
-        }
-        default: return state
+        case 'EDIT_FORAGE_REQUEST':
+            return {
+                editloading: true,
+                ...state
+            };
+        case 'EDIT_FORAGE_SUCCESS':
+            return {
+                editloading: false,
+                editsuccess: true,
+            };
+        case 'EDIT_FORAGE_FAILED':   
+            return {
+                editerror: action.payload,
+                editloading: false
+            };
+        default:
+            return state;
     }
-
-}
+};

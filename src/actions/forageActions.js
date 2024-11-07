@@ -6,13 +6,14 @@ import axios from 'axios';
 export const createForage = (forage) => async (dispatch) => {
     dispatch({ type: 'FORAGE_CREATE_REQUEST' });
     try {
-        const response = await axios.post('/api/forage/create', forage);
-        console.log(response);
-        dispatch({ type: 'FORAGE_CREATE_SUCCESS' });
+      const response = await axios.post('/api/forage/create', forage);
+      dispatch({ type: 'FORAGE_CREATE_SUCCESS' });
     } catch (error) {
-        dispatch({ type: 'FORAGE_CREATE_FAILED', payload: error });
+      const errorMessage = error.response?.data?.error || 'Erreur lors de la création du fourrage';
+      dispatch({ type: 'FORAGE_CREATE_FAILED', payload: errorMessage });
     }
-}
+  };
+  
 
 
 
@@ -49,7 +50,8 @@ export const editForage = (editedForage) => async (dispatch) => {
         dispatch({ type: 'EDIT_FORAGE_SUCCESS' });
         window.location.href = '/admin/forages'
     } catch (error) {
-        dispatch({ type: 'EDIT_FORAGE_FAILED', payload: error });
+         const errorMessage = error.response?.data?.message || "Erreur lors de la modification de fourrage";
+        dispatch({ type: 'EDIT_FORAGE_FAILED', payload: errorMessage });
     }
 };
 

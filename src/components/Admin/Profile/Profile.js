@@ -13,7 +13,7 @@ import PhoneInput from 'react-phone-number-input'
 export default function Profile() {
 
     useEffect(() => {
-        const socket = io('http://localhost:3001');
+        const socket = io('http://localhost:3000');
 
         return () => {
             socket.disconnect();

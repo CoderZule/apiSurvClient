@@ -18,7 +18,7 @@ export default function Users() {
     useEffect(() => {
         dispatch(getAllUsers());
 
-        const socket = io('http://localhost:3001');
+        const socket = io('http://localhost:3000');
         socket.on('usersChange', (change) => {
             console.log('Real-time update received:', change);
             dispatch(getAllUsers());

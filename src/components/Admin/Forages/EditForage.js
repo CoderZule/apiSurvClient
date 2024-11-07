@@ -10,7 +10,7 @@ import io from 'socket.io-client';
 export default function EditForage(props) {
 
     useEffect(() => {
-        const socket = io('http://localhost:3001');
+        const socket = io('http://localhost:3000');
 
         return () => {
             socket.disconnect();
@@ -86,8 +86,7 @@ export default function EditForage(props) {
 
                             <div className='row justify-content-center'>
                                 {editsuccess && <Success success="Fourrage mis à jour avec succès" />}
-                                {editerror && <Error error="Quelque chose s'est mal passé lors de la mise à jour du fourrage" />}
-
+                                {editerror && <Error error={editerror} />}
                                 <div className="col-md-4 mb-3">
                                     <button type="submit" className="btn ">Modifier</button>
                                 </div>

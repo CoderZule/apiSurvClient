@@ -14,24 +14,24 @@ export const loginUser = (user) => async (dispatch) => {
         });
 
         localStorage.setItem('currentUser', JSON.stringify({ currentUser, token }));
-     } catch (error) {
+    } catch (error) {
         dispatch({ type: 'USER_LOGIN_FAILED', payload: error });
     }
 };
 
- 
+
 
 export const logoutUser = () => (dispatch) => {
-    
+
     localStorage.removeItem('currentUser');
 
-    
+
     dispatch({ type: 'USER_LOGOUT' });
 
-    
+
     setTimeout(() => {
         window.location.href = '/';
-    }, 100);  
+    }, 100);
 };
 
 
@@ -44,7 +44,9 @@ export const createUser = (user) => async (dispatch) => {
         console.log(response);
         dispatch({ type: 'USER_CREATE_SUCCESS' });
     } catch (error) {
-        dispatch({ type: 'USER_CREATE_FAILED', payload: error });
+        const errorMessage = error.response?.data?.message || "Erreur lors de la création de l'utilisateur";
+        dispatch({ type: 'USER_CREATE_FAILED', payload: errorMessage });
+
     }
 }
 
@@ -78,14 +80,15 @@ export const getUserById = (userId) => async dispatch => {
 export const editUser = (editedUser) => async (dispatch) => {
     dispatch({ type: 'EDIT_USER_REQUEST' });
     try {
-        const response = await axios.post('/api/user/editUser', editedUser);
-        console.log(response);
-        dispatch({ type: 'EDIT_USER_SUCCESS' });
-        window.location.href = '/admin/users'
+      const response = await axios.post('/api/user/editUser', editedUser);
+      dispatch({ type: 'EDIT_USER_SUCCESS' });
+      window.location.href = '/admin/users';
     } catch (error) {
-        dispatch({ type: 'EDIT_USER_FAILED', payload: error });
+      const errorMessage = error.response?.data?.message || "Erreur lors de la modification de l'utilisateur";
+      dispatch({ type: 'EDIT_USER_FAILED', payload: errorMessage });
     }
-};
+  };
+  
 
 
 export const deleteUser = (userid) => async dispatch => {

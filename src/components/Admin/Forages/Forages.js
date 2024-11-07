@@ -18,7 +18,7 @@ export default function Forages() {
      useEffect(() => {
         dispatch(getAllForages());
 
-        const socket = io('http://localhost:3001');
+        const socket = io('http://localhost:3000');
         socket.on('forageChange', (change) => {
             console.log('Real-time update received:', change);
             dispatch(getAllForages());
