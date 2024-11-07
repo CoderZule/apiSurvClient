@@ -5,7 +5,7 @@ export const loginUser = (user) => async (dispatch) => {
     dispatch({ type: 'USER_LOGIN_REQUEST' });
 
     try {
-        const response = await axios.post('/api/user/login', user);
+        const response = await axios.post('https://apisurvserver.onrender.com/api/user/login', user);
         const { currentUser, token } = response.data;
 
         dispatch({
@@ -40,7 +40,7 @@ export const logoutUser = () => (dispatch) => {
 export const createUser = (user) => async (dispatch) => {
     dispatch({ type: 'USER_CREATE_REQUEST' });
     try {
-        const response = await axios.post('/api/user/create', user);
+        const response = await axios.post('https://apisurvserver.onrender.com/api/user/create', user);
         console.log(response);
         dispatch({ type: 'USER_CREATE_SUCCESS' });
     } catch (error) {
@@ -55,7 +55,7 @@ export const createUser = (user) => async (dispatch) => {
 export const getAllUsers = () => async dispatch => {
     dispatch({ type: 'GET_USERS_REQUEST' })
     try {
-        const response = await axios.get('/api/user/getAllUsers')
+        const response = await axios.get('https://apisurvserver.onrender.com/api/user/getAllUsers')
         console.log(response);
         dispatch({ type: 'GET_USERS_SUCCESS', payload: response.data })
     } catch (error) {
@@ -69,7 +69,7 @@ export const getUserById = (userId) => async dispatch => {
     dispatch({ type: 'GET_USERBYID_REQUEST' })
 
     try {
-        const response = await axios.get(`/api/user/getUserById/${userId}`);
+        const response = await axios.get(`https://apisurvserver.onrender.com/api/user/getUserById/${userId}`);
         dispatch({ type: 'GET_USERBYID_SUCCESS', payload: response.data })
     } catch (error) {
         dispatch({ type: 'GET_USERBYID_FAILED', payload: error })
@@ -80,7 +80,7 @@ export const getUserById = (userId) => async dispatch => {
 export const editUser = (editedUser) => async (dispatch) => {
     dispatch({ type: 'EDIT_USER_REQUEST' });
     try {
-      const response = await axios.post('/api/user/editUser', editedUser);
+      const response = await axios.post('https://apisurvserver.onrender.com/api/user/editUser', editedUser);
       dispatch({ type: 'EDIT_USER_SUCCESS' });
       window.location.href = '/admin/users';
     } catch (error) {
@@ -93,7 +93,7 @@ export const editUser = (editedUser) => async (dispatch) => {
 
 export const deleteUser = (userid) => async dispatch => {
     try {
-        const response = await axios.post('/api/user/deleteUser', { userid })
+        const response = await axios.post('https://apisurvserver.onrender.com/api/user/deleteUser', { userid })
         alert('Utilisateur supprimé avec succès')
         console.log(response);
         window.location.reload()

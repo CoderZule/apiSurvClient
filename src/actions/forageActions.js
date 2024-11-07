@@ -6,7 +6,7 @@ import axios from 'axios';
 export const createForage = (forage) => async (dispatch) => {
     dispatch({ type: 'FORAGE_CREATE_REQUEST' });
     try {
-      const response = await axios.post('/api/forage/create', forage);
+      const response = await axios.post('https://apisurvserver.onrender.com/api/forage/create', forage);
       dispatch({ type: 'FORAGE_CREATE_SUCCESS' });
     } catch (error) {
       const errorMessage = error.response?.data?.error || 'Erreur lors de la création du fourrage';
@@ -20,7 +20,7 @@ export const createForage = (forage) => async (dispatch) => {
 export const getAllForages = () => async dispatch => {
     dispatch({ type: 'GET_FORAGES_REQUEST' })
     try {
-        const response = await axios.get('/api/forage/getAllForages')
+        const response = await axios.get('https://apisurvserver.onrender.com/api/forage/getAllForages')
         console.log(response);
         dispatch({ type: 'GET_FORAGES_SUCCESS', payload: response.data })
     } catch (error) {
@@ -34,7 +34,7 @@ export const getForageById = (forageId) => async dispatch => {
     dispatch({ type: 'GET_FORAGEBYID_REQUEST' })
 
     try {
-        const response = await axios.get(`/api/forage/getForageById/${forageId}`);
+        const response = await axios.get(`https://apisurvserver.onrender.com/api/forage/getForageById/${forageId}`);
         dispatch({ type: 'GET_FORAGEBYID_SUCCESS', payload: response.data })
     } catch (error) {
         dispatch({ type: 'GET_FORAGEBYID_FAILED', payload: error })
@@ -45,7 +45,7 @@ export const getForageById = (forageId) => async dispatch => {
 export const editForage = (editedForage) => async (dispatch) => {
     dispatch({ type: 'EDIT_FORAGE_REQUEST' });
     try {
-        const response = await axios.post('/api/forage/editForage', editedForage);
+        const response = await axios.post('https://apisurvserver.onrender.com/api/forage/editForage', editedForage);
         console.log(response);
         dispatch({ type: 'EDIT_FORAGE_SUCCESS' });
         window.location.href = '/admin/forages'
@@ -58,7 +58,7 @@ export const editForage = (editedForage) => async (dispatch) => {
 
 export const deleteForage = (forageId) => async dispatch => {
     try {
-        const response = await axios.post('/api/forage/deleteForage', { forageId })
+        const response = await axios.post('https://apisurvserver.onrender.com/api/forage/deleteForage', { forageId })
         alert('fourrage supprimé avec succès')
         console.log(response);
         window.location.reload()
