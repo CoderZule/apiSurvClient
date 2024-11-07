@@ -80,15 +80,15 @@ export const getUserById = (userId) => async dispatch => {
 export const editUser = (editedUser) => async (dispatch) => {
     dispatch({ type: 'EDIT_USER_REQUEST' });
     try {
-      const response = await axios.post('https://apisurvserver.onrender.com/api/user/editUser', editedUser);
-      dispatch({ type: 'EDIT_USER_SUCCESS' });
-      window.location.href = '/admin/users';
+        const response = await axios.post('https://apisurvserver.onrender.com/api/user/editUser', editedUser);
+        dispatch({ type: 'EDIT_USER_SUCCESS' });
+        window.location.href = '/admin/users';
     } catch (error) {
-      const errorMessage = error.response?.data?.message || "Erreur lors de la modification de l'utilisateur";
-      dispatch({ type: 'EDIT_USER_FAILED', payload: errorMessage });
-    }
-  };
-  
+        const errorMessage = error.response?.data?.message || "Erreur lors de la modification de l'utilisateur";
+        dispatch({ type: 'EDIT_USER_FAILED', payload: errorMessage });
+     }
+};
+
 
 
 export const deleteUser = (userid) => async dispatch => {

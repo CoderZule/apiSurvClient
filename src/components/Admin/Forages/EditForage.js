@@ -61,6 +61,15 @@ export default function EditForage(props) {
         }
     }
 
+
+    useEffect(() => {
+        if (editerror ) {
+            setTimeout(() => {
+                window.location.href = '/admin/forages';
+            }, 3000);
+        }
+    }, [editerror, history]);
+
  
     return (
         <div className="row justify-content-center">

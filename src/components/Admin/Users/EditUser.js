@@ -8,7 +8,7 @@ import io from 'socket.io-client';
 
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
-
+ 
 export default function EditUser(props) {
 
     useEffect(() => {
@@ -85,6 +85,14 @@ export default function EditUser(props) {
             setLastname(value);
         }
     }
+
+    useEffect(() => {
+        if (editerror ) {
+            setTimeout(() => {
+                window.location.href = '/admin/users';
+            }, 5000);
+        }
+    }, [editerror, history]);
 
     return (
         <div className="row justify-content-center">

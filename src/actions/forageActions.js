@@ -25,6 +25,7 @@ export const getAllForages = () => async dispatch => {
         dispatch({ type: 'GET_FORAGES_SUCCESS', payload: response.data })
     } catch (error) {
         dispatch({ type: 'GET_FORAGES_FAILED', payload: error })
+        
 
     }
 
@@ -52,7 +53,7 @@ export const editForage = (editedForage) => async (dispatch) => {
     } catch (error) {
          const errorMessage = error.response?.data?.message || "Erreur lors de la modification de fourrage";
         dispatch({ type: 'EDIT_FORAGE_FAILED', payload: errorMessage });
-    }
+     }
 };
 
 
