@@ -90,7 +90,7 @@ export default function EditUser(props) {
         if (editerror ) {
             setTimeout(() => {
                 window.location.href = '/admin/users';
-            }, 5000);
+            }, 3000);
         }
     }, [editerror, history]);
 
